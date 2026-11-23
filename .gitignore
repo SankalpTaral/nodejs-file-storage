@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Uploaded files (don't push user uploads)
+uploads/*
+!uploads/.gitkeep
+
+# Logs
+*.log
+
+# OS files
+.DS_Store

@@ -7,7 +7,6 @@ import multer from 'multer';
 dotenv.config();
 const app = express();
 
-app.use(express.json());
 
 // check wheter the uploads folder exist or no at start
 

@@ -1,5 +1,8 @@
 
 export const uploadImage = (req, res) => {
+
+    // why this condition because multer will not throw error if u dont upload a file in body
+
     if (!req.file) {
         return res.status(400).json({
             success: false,

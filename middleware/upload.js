@@ -1,5 +1,7 @@
 
+import { randomUUID } from 'crypto';
 import multer from 'multer'
+import path from 'path';
 
 
 const fileFilter = (req,file,cb)=>{
@@ -22,13 +24,15 @@ const storageConfig = multer.diskStorage({
     },
 
     filename : function(req,file,cb){
-        cb(null,file.originalname)
+        
+        const uniqueName = `${randomUUID()},${path.extname(file.originalname)}`
+        cb(null,uniqueName);
     }
 })
 
 const upload = multer({storage : storageConfig, 
     fileFilter, // just pass the reference dont call it multer interally calls it
-    
+
         limits: {
         fileSize: 5 * 1024 * 1024 // 5 mb 
     }
@@ -36,3 +40,9 @@ const upload = multer({storage : storageConfig,
 
 
 export default upload;
+
+
+/*
+Feature 
+
+*/

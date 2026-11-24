@@ -25,7 +25,7 @@ const storageConfig = multer.diskStorage({
 
     filename : function(req,file,cb){
         
-        const uniqueName = `${randomUUID()},${path.extname(file.originalname)}`
+        const uniqueName = `${randomUUID()}${path.extname(file.originalname)}`
         cb(null,uniqueName);
     }
 })

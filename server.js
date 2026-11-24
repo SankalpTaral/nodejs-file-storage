@@ -1,7 +1,7 @@
 import express from 'express'
 import fs from 'fs'
 import dotenv from'dotenv'
-import { uploadImage } from './controllers/fileController.js';
+import { uploadImage , getImage } from './controllers/fileController.js';
 import upload from './middleware/upload.js';
 import multer from 'multer';
 dotenv.config();
@@ -17,6 +17,8 @@ if (!fs.existsSync('./uploads')) {
 
 
 app.post("/upload", upload.single("image"), uploadImage);
+
+app.get("/upload/:fileName",getImage)
 
 // if multer throws any error
 app.use((err, req, res, next) => {

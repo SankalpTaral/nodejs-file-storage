@@ -1,4 +1,6 @@
 
+import fs from 'fs';
+import path from 'path';
 export const uploadImage = (req, res) => {
 
     // why this condition because multer will not throw error if u dont upload a file in body
@@ -29,4 +31,21 @@ export const uploadImage = (req, res) => {
         path
 
     })
+}
+export const getImage = (req,res)=>{
+    //Extract name of the file from params 
+    const { fileName } = req.params;
+
+    // construct the file path 
+const filePath = path.join(process.cwd(), 'uploads', fileName);
+// check wheter file exists
+
+if (!fs.existsSync(filePath)) {
+    return res.status(404).json({
+        success: false,
+        message: "File not found"
+    });
+}
+return res.sendFile(filePath);
+
 }
